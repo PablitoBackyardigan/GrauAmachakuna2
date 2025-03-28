@@ -1,5 +1,5 @@
 header {
-    background-image: url("{{ Vite::asset('public/images/background.jpg') }}");
+    background-image: url("../../public/images/background.jpg");
     background-size: cover;
     background-position: center;
     height: 45rem;
