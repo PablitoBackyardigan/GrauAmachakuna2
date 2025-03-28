@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopcartController;
 
+Route::get('/', [HomeController::class, 'inicio']);
 Route::get('home', HomeController::class);
 Route::get('shopcart', ShopcartController::class);
 
