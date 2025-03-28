@@ -4,7 +4,9 @@
 
 @section('titulo', 'PRODUCTOS')
 
-<link rel="stylesheet" href="{{ asset('css/indexProduct.css') }}">
+@push('styles')
+    @vite(['resources/css/indexProduct.css'])
+@endpush
 
 @section('content')
     <section class="products">
