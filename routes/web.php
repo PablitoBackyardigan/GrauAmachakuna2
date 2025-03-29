@@ -11,10 +11,6 @@ use App\Http\Controllers\ShopcartController;
 Route::get('/', [HomeController::class, 'inicio']);
 Route::get('home', HomeController::class)->name('home');
 
-// Rutas de Permisos
-
-
-
 // Rutas de Breeze
 Route::get('/dashboard', function () {
     return view('dashboard');
