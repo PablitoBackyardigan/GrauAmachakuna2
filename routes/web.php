@@ -8,7 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopcartController;
 
 // Rutas de inicio
-Route::get('', [HomeController::class, 'inicio']);
+Route::get('/', [HomeController::class, 'inicio']);
 Route::get('home', HomeController::class)->name('home');
 
 // Rutas de Breeze
