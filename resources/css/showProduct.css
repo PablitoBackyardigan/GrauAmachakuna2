@@ -1,0 +1,141 @@
+header {
+    background-image: url("../../public/images/productosbackground.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 13rem;
+}
+
+.titulo {
+    margin-top: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el título perfectamente */
+    color: #ffffff;
+    font-size: 3rem;
+    font-family: serif;
+    font-weight: bolder;
+    line-height: 0.8;
+    text-shadow: 0 0 40px #232323c7;
+    text-align: center;
+}
+
+.titulo h1 {
+    margin: 0; /* Elimina cualquier margen predeterminado */
+    padding: 20px 0; /* Ajusta el espacio superior e inferior */
+}
+
+.contenido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.producto-container {
+    display: flex;
+    gap: 50px;
+    max-width: 1200px;
+}
+
+/* Imágenes más pequeñas */
+.imagenes-producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imagen-principal img {
+    width: 400px;
+    border-radius: 10px;
+}
+
+.imagenes-secundarias {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.imagenes-secundarias img {
+    width: 120px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Descripción del producto */
+.descripcion-producto {
+    max-width: 600px;
+    font-size: 1.1em; /* Reducido */
+    line-height: 1.4;
+    padding-left: 40px;
+}
+
+/* Texto de "Torta de Chocolate" más pequeño */
+.titulo-producto {
+    font-size: 1.7em; /* Reducido */
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Marca */
+.marca {
+    font-size: 1em; /* Reducido */
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Precio */
+.precio {
+    margin: 0;
+    font-size: 2em; /* Reducido */
+    color: red;
+    font-weight: bold;
+}
+
+/* Contenedor de cantidad */
+.cantidad-container {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.cantidad-container input {
+    width: 45px;
+    height: 35px;
+    text-align: center;
+    font-size: 1em; /* Reducido */
+    margin: 0 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.cantidad-container button {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2em; /* Reducido */
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+}
+
+.cantidad-container button:hover {
+    background-color: #bbb;
+}
+
+/* Botón "Agregar al Carrito" */
+.boton-agregar {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-size: 1.3em; /* Reducido */
+    color: white;
+    background-color: #ff3366;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.boton-agregar:hover {
+    background-color: #cc0044;
+}

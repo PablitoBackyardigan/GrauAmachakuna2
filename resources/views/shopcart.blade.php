@@ -4,7 +4,9 @@
 
 @section('titulo', 'CARRITO DE COMPRA')
 
-<link rel="stylesheet" href="{{ asset('css/shopcart.css') }}">
+@push('styles')
+    @vite(['resources/css/shopcart.css'])
+@endpush
 
 @section('content')
 <section class="contenido">

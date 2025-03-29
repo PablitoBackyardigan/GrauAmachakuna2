@@ -19,7 +19,7 @@ class ProductoSeeder extends Seeder
         $producto->description = "Deliciosa torta bañada en chocolate negro";
         $producto->category = "Tortas";
         $producto->price = 23;
-        $producto->image = "images/torta_chocolate.jpg";
+        $producto->file_uri = "images/torta_chocolate.jpg";
         $producto->save();
 
         $producto2 = new Producto();
@@ -28,7 +28,7 @@ class ProductoSeeder extends Seeder
         $producto2->description = "Deliciosa torta bañada en 3 leches";
         $producto2->category = "Tortas";
         $producto2->price = 20;
-        $producto2->image = "images/torta_3leches.jpg";
+        $producto2->file_uri = "images/torta_3leches.jpg";
 
         $producto2->save();
     }

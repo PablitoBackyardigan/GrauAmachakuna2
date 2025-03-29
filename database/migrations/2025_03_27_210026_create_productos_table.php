@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->text('category');
-            $table->integer('price');
-            $table->text('image');
+            $table->decimal('price',10, 2);
+            $table->string('file_uri')->nullable();
             $table->timestamps();
         });
     }

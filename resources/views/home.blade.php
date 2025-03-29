@@ -3,8 +3,10 @@
 @section('title', 'Home')
 
 @section('titulo', 'PASTELERIA')
+@push('styles')
+    @vite(['resources/css/home.css'])
+@endpush
 
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
 @section('content')
     <section class="contenido">

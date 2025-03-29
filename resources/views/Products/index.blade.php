@@ -4,21 +4,16 @@
 
 @section('titulo', 'PRODUCTOS')
 
-<link rel="stylesheet" href="{{ asset('css/indexProduct.css') }}">
+@push('styles')
+    @vite(['resources/css/indexProduct.css'])
+@endpush
 
 @section('content')
     <section class="products">
 
-        <a href="{{route('productos.create')}}">Crear Producto</a>
-
-        <!--
-        <ul>
-            @foreach ($productos as $producto)
-                <li>
-                    <a href="{{route('productos.show', $producto->id)}}">{{$producto->name}}</a>
-                </li>
-            @endforeach
-        </ul> -->
+        @can('productos.create')
+            <a href="{{route('productos.create')}}">Crear Producto</a>
+        @endcan
 
         {{$productos->links()}}
 
@@ -28,7 +23,7 @@
                 <div class="cardproduct">
 
                     <div class="img">
-                        <img src="{{$producto->image}}">
+                        <img src="{{ asset($producto->file_uri) }}">
                     </div>
                 
                     <div class="text">
