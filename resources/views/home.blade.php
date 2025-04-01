@@ -11,20 +11,43 @@
 @section('content')
     <section class="contenido">
             
-        <div class="section1">
-            <img src="images/QuienesSomos.jpg">
-        </div>
+        <div class="container-historia">
 
-        <div class="section2">
-            <div class="texto1">
-                <h2> ¿Quienes somos? </h2>
-                <p> En Pastelería, somos apasionados por el arte de la pastelería. Con años de experiencia y un equipo de expertos reposteros, 
-                    combinamos tradición e innovación para crear postres y pasteles de la más alta calidad.</p>
-                <p> Nos especializamos en recetas artesanales elaboradas con ingredientes frescos y seleccionados, garantizando un sabor único 
-                    en cada bocado. Desde elegantes tortas de boda hasta delicados macarons y postres personalizados, nuestra misión es endulzar
-                    cada momento especial de nuestros clientes.</p>
+            <div class="imagen-historia">
+                <img src="{{ asset('images/pastel1.jpg') }}" >
+            </div>
+
+            <div class="content">
+                <h2>Nuestra Historia</h2>
+                <p>Desde 2010, Dulce Delicia ha estado creando pasteles y postres artesanales con los ingredientes más frescos y de la más alta calidad. Nuestra pasión por la repostería nos ha convertido en la opción preferida para celebraciones y momentos especiales.</p>
+                <p>Cada producto es elaborado con amor y atención al detalle, siguiendo recetas tradicionales con un toque moderno que nos distingue.</p>
+                <a href="#" class="button">Conocer Más</a>
             </div>
         </div>
+
+        <div class"resenas">
+            <div class="container-resena">
+                <div class="title">Lo Que Dicen Nuestros Clientes</div>
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <div class="text">"Los pasteles de Dulce Delicia son simplemente increíbles. El sabor, la textura y la presentación son perfectos. Siempre son el centro de atención en nuestras celebraciones."</div>
+                        <div class="client">Cliente 1</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <div class="text">"Los pasteles de Dulce Delicia son simplemente increíbles. El sabor, la textura y la presentación son perfectos. Siempre son el centro de atención en nuestras celebraciones."</div>
+                        <div class="client">Cliente 2</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <div class="text">"Los pasteles de Dulce Delicia son simplemente increíbles. El sabor, la textura y la presentación son perfectos. Siempre son el centro de atención en nuestras celebraciones."</div>
+                        <div class="client">Cliente 3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </section>
 @endsection

@@ -1,55 +1,89 @@
-@extends('layouts.plantilla')
+<h2 class="form-title"> Editar {{$producto->name}} </h2>
 
-@section('title', 'Editar ' . $producto->name)
+<form action="{{ route('productos.update', $producto) }}" method="POST" enctype="multipart/form-data" class="formCrearProducto">
+    @csrf
+    @method('PUT')
 
-@section('content')
+    <div class="form-row">
+        <!-- Columna izquierda -->
+        <div class="form-column">
+            <div class="form-group">
+                <input type="text" name="name" class="form-control" value="{{$producto->name}}" placeholder="Nombre" autocomplete="off">
+            </div>
 
-    <h1>Bienvenido a la página de crear productos</h1>
+            <div class="form-group">
+                <textarea name="description" class="form-control" placeholder="Descripción" rows="5">{{$producto->description}}</textarea>
+            </div>
 
-    <form action="{{ route('productos.update', $producto) }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="text" name="category" class="form-control" placeholder="Categoría" list="categoryList" autocomplete="off" value="{{ old('category', $producto->category) }}">
+                <datalist id="categoryList">
+                    @foreach ($categorias as $categoria)
+                        <option value="{{ $categoria }}"></option>
+                    @endforeach
+                </datalist>                     
+            </div>        
 
-        @csrf
+            <div class="form-group">
+                <div class="input-container">
+                    <span class="currency">S/</span>
+                    <input type="number" name="price" class="form-control price-input" value="{{$producto->price}}" placeholder="Precio" autocomplete="off">
+                </div>
+            </div>
+        </div>
 
-        @method('put')
+        <!-- Columna derecha -->
+        <div class="form-column">
+            <div class="file-upload">
+                <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke="#20c997" stroke-width="2" fill="none"/>
+                    <line x1="12" y1="8" x2="12" y2="16" stroke="#20c997" stroke-width="2"/>
+                    <line x1="8" y1="12" x2="16" y2="12" stroke="#20c997" stroke-width="2"/>
+                </svg>
+                <p class="upload-text">Subir imagen</p>
+                <!-- Input y botón para seleccionar archivos -->
+                <input type="file" id="fileInput" class="fileInput" name="productImage" accept=".png, .jpg, .jpeg, .webp, .svg" style="display:none;">
+                <button type="button" class="btn btn-light btnSelectFile">
+                    Seleccionar archivo .jpg, .jpeg, .png
+                </button>
+                <div class="preview-container"></div>
+            </div>
+        </div>
+    </div>
 
-        <label>
-            Nombre:
-            <br>
-            <input type="text" name="name" value="{{$producto->name}}"
-        </label>
+    <button type="submit" class="btn submit-btn">Enviar Formulario</button>
+</form>
 
-        <br>
-        <label>
-            Descripción:
-            <br>
-            <textarea name="description" rows="5">{{$producto->description}}</textarea>
-        </label>
+<!-- Mover el script a esta parte justo antes de </body> -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fileInput = document.querySelector(".fileInput");
+        const btnSelectFile = document.querySelector(".btnSelectFile");
+        const previewContainer = document.querySelector(".preview-container");
 
-        <br>
-        <label>
-            Categoria:
-            <br>
-            <input type="text" name="category" value="{{$producto->category}}">
-        </label>
+        if (!fileInput || !btnSelectFile) return;
 
-        <br>
-        <label>
-            Precio:
-            <br>
-            <input type="number" name="price" value="{{$producto->price}}">
-        </label>
+        btnSelectFile.addEventListener("click", function () {
+            fileInput.value = ""; 
+            fileInput.click();
+        });
 
-        <br>
-        <label>
-            IMAGEN PRODUCTO SUBIR:
-            <br>
-            <input type="file" class="fileInput" name="productImage" accept=".png, .jpg, .jpeg, .webp, .svg" style="display:none;">
-            <button type="button" class="btnSelectFile" onclick="handleFileSelect(this)">Seleccionar archivo .jpg,  .jpeg,  .png</button>
-        </label>
+        fileInput.addEventListener("change", function () {
+            if (!fileInput.files || fileInput.files.length === 0) return;
 
-        <br>
-        <button type="submit"> Actualizar Formulario </button>
-
-    </form>
-
-@endsection
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                previewContainer.innerHTML = ''; 
+                const previewImage = document.createElement("img");
+                previewImage.id = "previewImage";
+                previewImage.style.maxWidth = "350px";
+                previewImage.style.borderRadius = "10px";
+                previewImage.style.display = "block";
+                previewImage.src = e.target.result;
+                previewContainer.appendChild(previewImage);
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
