@@ -92,3 +92,66 @@ header {
     cursor: pointer;
     box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
 }
+
+/* Botón para abrir la modal */
+.btn {
+    padding: 10px 20px;
+    background-color: #f1396d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #d33360;
+}
+
+/* Estilos generales del modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    opacity: 0; /* Asegurar que esté completamente invisible */
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s;
+    position: fixed;
+    z-index: 9999; /* Se sobrepone a todo */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Ocupa todo el ancho */
+    height: 100vh; /* Ocupa todo el alto */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    display: flex; /* Se mostrará cuando agreguemos la clase "show" */
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Contenedor del contenido del modal */
+.modal-content {
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    width: 60%; /* Más ancho */
+    max-width: 1500px; /* Ancho máximo */
+    position: relative;
+    height: 75%;
+}
+
+/* Botón de cerrar */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: black;
+}
+
+.close:hover {
+    color: red;
+}

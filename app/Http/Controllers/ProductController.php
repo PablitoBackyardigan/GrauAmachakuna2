@@ -15,7 +15,9 @@ class ProductController extends Controller
     }
 
     public function create() {
-        return view('Products.create');
+        $productos = Producto::select('category')->distinct()->get();
+        
+        return view('Products.create', compact('productos'));
     }
     
     public function store(Request $request) {
@@ -45,17 +47,23 @@ class ProductController extends Controller
         return redirect()->route('productos.show', $producto);
     }    
     
-    public function show(Producto $producto){
-
-        return view('Products.show', compact('producto'));
-
+    public function show(Producto $producto)
+    {
+        // Obtener todas las categorías únicas de productos
+        $categorias = Producto::pluck('category')->unique();
+        
+        // Pasar el producto y las categorías a la vista
+        return view('Products.show', compact('producto', 'categorias'));
     }
 
-    public function edit(Producto $producto){
-
-        return view('Products.edit', compact('producto'));
-
+    public function edit(Producto $producto)
+    {
+        // Si necesitas pasar categorías a la vista, asegúrate de obtenerlas
+        $categorias = Producto::pluck('category')->unique();
+    
+        return view('Products.edit', compact('producto', 'categorias'))->render();
     }
+    
 
     public function update(Request $request, Producto $producto){
         $producto->name = $request->name;

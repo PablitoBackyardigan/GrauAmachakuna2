@@ -21,7 +21,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::controller(ProductController::class)->group(function(){
-        Route::get('productos/create', 'create')->name('productos.create');
         Route::post('productos', 'store')->name('productos.store');
         Route::get('productos/{producto}', 'show')->name('productos.show');
         Route::get('productos/{producto}/edit', 'edit')->name('productos.edit');
