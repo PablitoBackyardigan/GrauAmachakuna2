@@ -78,7 +78,7 @@
                 const productoId = btnOpenModal.getAttribute("data-producto-id");
         
                 // Solicitar el formulario de edición para ese producto
-                fetch(`/ecommerce/public/productos/${productoId}/edit`)
+                fetch(`public/productos/${productoId}/edit`)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error(`Error: ${response.statusText}`);
