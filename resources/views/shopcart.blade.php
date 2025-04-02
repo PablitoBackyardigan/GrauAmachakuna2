@@ -12,61 +12,65 @@
 <section class="contenido">
     <div class="columna">
         <h3 class="titulo-caja">Carrito de Compras</h3>
+            
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+        
+            @if($cartItems->isEmpty())
+                <div class="cart-item">  
+                    <p>No hay productos en el carrito.</p>
+                </div>
+                
+            @else
+            
+            @foreach($cartItems as $item)
+            <div class="cart-item" data-id="{{ $item->id }}">
+                <img src="{{ asset($item->producto->file_uri) }}" width="50">
+                <div class="details">
+                    <h4>{{ $item->producto->name }}</h4>
+                    <p>{{ $item->producto->description }}</p>
+                </div>
+                <div class="price">S/.{{ $item->producto->price }}</div>
+                <div class="quantity">
+                    <form action="{{ route('cart.update', $item->id) }}" method="POST" class="quantity-form">
+                        @csrf
+                        <input type="hidden" name="action" value="decrease">
+                        <button type="submit" class="quantity-btn">-</button>
+                    </form>
+                    <span class="quantity-text" data-id="{{ $item->id }}">{{ $item->cantidad }}</span>
+                    <form action="{{ route('cart.update', $item->id) }}" method="POST" class="quantity-form">
+                        @csrf
+                        <input type="hidden" name="action" value="increase">
+                        <button type="submit" class="quantity-btn">+</button>
+                    </form>
+                </div>
+                <div class="total">Total: S/. <span class="total-price" data-id="{{ $item->id }}">{{ $item->producto->price * $item->cantidad }}</span></div>
+                <div class="delete">
+                    <form action="{{ route('cart.remove', $item->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" style="background: none; border: none; padding: 0;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" viewBox="0 0 16 16">
+                                <path d="M6.5 1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1h3a.5.5 0 0 1 0 1h-10a.5.5 0 0 1 0-1h3V1zM2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V4zm3 2a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6zm3 0a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6zm3 0a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        @endforeach
+        
+            @endif
 
-        <div class="cart-item">
-            <img src="https://images-cdn.ubuy.pe/654d3c4c9abeb565732bf994-starlink-v2-satellite-dish-kit-with.jpg" alt="Starlink">
-            <div class="details">
-                <h4>STARLINK</h4>
-                <p>Kit de internet Satelital SpaceX Starlink Mini de alta velocidad y baja latencia, conecta hasta 128 dispositivos...</p>
-            </div>
-            <div class="price">S/749.90</div>
-            <div class="quantity">
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
-            </div>
-            <div class="total">Total: S/749.90</div>
-            <div class="delete">🗑</div>
-        </div>
-
-        <div class="cart-item">
-            <img src="https://images-cdn.ubuy.pe/654d3c4c9abeb565732bf994-starlink-v2-satellite-dish-kit-with.jpg" alt="Starlink">
-            <div class="details">
-                <h4>STARLINK</h4>
-                <p>Kit de internet Satelital SpaceX Starlink Mini de alta velocidad y baja latencia, conecta hasta 128 dispositivos...</p>
-            </div>
-            <div class="price">S/749.90</div>
-            <div class="quantity">
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
-            </div>
-            <div class="total">Total: S/749.90</div>
-            <div class="delete">🗑</div>
-        </div>
-
-        <div class="cart-item">
-            <img src="https://images-cdn.ubuy.pe/654d3c4c9abeb565732bf994-starlink-v2-satellite-dish-kit-with.jpg" alt="Starlink">
-            <div class="details">
-                <h4>STARLINK</h4>
-                <p>Kit de internet Satelital SpaceX Starlink Mini de alta velocidad y baja latencia, conecta hasta 128 dispositivos...</p>
-            </div>
-            <div class="price">S/749.90</div>
-            <div class="quantity">
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
-            </div>
-            <div class="total">Total: S/749.90</div>
-            <div class="delete">🗑</div>
-        </div>
     </div>
     <div class="columna">
         <h3 class="titulo-caja">Resumen de Compra</h3>
         <div class="caja2">
-            <h1>Total</h1>   
+            <h1>Total</h1>
+            <p><strong>S/.{{ $cartItems->sum(fn($item) => $item->producto->price * $item->cantidad) }}</strong></p>   
             <button type="submit">Proceder al Pago</button>  
         </div>
     </div>
 </section>  
+
 @endsection

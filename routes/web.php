@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ShopcartController;
+
 
 // Rutas de inicio
 Route::get('/', [HomeController::class, 'inicio']);
@@ -30,7 +30,11 @@ Route::middleware('auth')->group(function () {
         Route::get('productos/{producto}/edit', 'edit')->name('productos.edit');
         Route::put('productos/{producto}', 'update')->name('productos.update');
     });
-    Route::get('shopcart', ShopcartController::class)->name('shopcart');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{productoId}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
 });
 
 // Rutas de productos

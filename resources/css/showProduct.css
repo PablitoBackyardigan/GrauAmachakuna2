@@ -140,6 +140,10 @@ header {
     background-color: #cc0044;
 }
 
+.AddCartButton {
+    margin-top: 20px;
+}
+
 /* Estilos generales del modal */
 .modal {
     display: none; /* Oculto por defecto */

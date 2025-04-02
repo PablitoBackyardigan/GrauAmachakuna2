@@ -13,7 +13,7 @@
             <ul>
                 <li><a href="{{route('home')}}">Inicio</a></li>
                 <li><a href="{{route('productos.index')}}">Productos</a></li>
-                <li><a href="{{route('shopcart')}}">Carro de Compras</a></li>
+                <li><a href="{{ route('cart.index') }}">Carrito</a></li>
                 <li>
                     @auth
                         <form id="formLogOut" method="POST" action="{{ route('logout')}}" style="display: inline;">

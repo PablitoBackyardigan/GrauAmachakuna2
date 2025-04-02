@@ -27,6 +27,9 @@
 
     <a href="{{ Route('productos.index') }}">Volver a productos</a>
 
+
+    
+
     <section class="contenido">
         <div class="producto-container">
             <!-- Contenedor de imágenes -->
@@ -45,13 +48,21 @@
     
                 <!-- Selector de cantidad -->
                 <div class="cantidad-container">
-                    <button>-</button>
-                    <input type="number" value="1" min="1">
-                    <button>+</button>
+                    <button type="button" onclick="decreaseQuantity()">-</button>
+                    <input type="number" id="cantidad" name="cantidad" value="1" min="1" onchange="updateQuantity()" />
+                    <button type="button" onclick="increaseQuantity()">+</button>
                 </div>
-    
-                <!-- Botón Agregar al Carrito -->
-                <button class="boton-agregar">Agregar al Carrito</button>
+                
+                <div class="AddCartButton">
+                    <!-- Botón Agregar al Carrito -->
+                    <form action="{{ route('cart.add', $producto->id) }}" method="POST" id="cartForm">
+                        @csrf
+                        <!-- Campo oculto para enviar la cantidad -->
+                        <input type="hidden" id="cantidad_form" name="cantidad" value="1">
+                        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                    </form>
+                </div>
+
             </div>
         </div>
     </section>
@@ -77,8 +88,11 @@
                 // Obtener el ID del producto desde el atributo data-producto-id
                 const productoId = btnOpenModal.getAttribute("data-producto-id");
         
-                // Solicitar el formulario de edición para ese producto
-                fetch(`/ecommerce/public/productos/${productoId}/edit`)
+                // Obtener la URL base dinámicamente
+                const baseUrl = window.location.origin; 
+
+                fetch(`${baseUrl}/ecommerce/public/productos/${productoId}/edit`)
+
                     .then(response => {
                         if (!response.ok) {
                             throw new Error(`Error: ${response.statusText}`);
@@ -146,6 +160,39 @@
                 }
             });
         });
+        
+    </script>
+
+    <script>
+        // Función para disminuir la cantidad
+        function decreaseQuantity() {
+            var cantidadInput = document.getElementById('cantidad');
+            var cantidad = parseInt(cantidadInput.value);
+            if (cantidad > 1) {
+                cantidadInput.value = cantidad - 1;
+                updateHiddenInput();
+            }
+        }
+
+        // Función para aumentar la cantidad
+        function increaseQuantity() {
+            var cantidadInput = document.getElementById('cantidad');
+            var cantidad = parseInt(cantidadInput.value);
+            cantidadInput.value = cantidad + 1;
+            updateHiddenInput();
+        }
+
+        // Función para actualizar la cantidad
+        function updateQuantity() {
+            updateHiddenInput();
+        }
+
+        // Función para actualizar el input oculto en el formulario
+        function updateHiddenInput() {
+            var cantidadInput = document.getElementById('cantidad');
+            var cantidadFormInput = document.getElementById('cantidad_form');
+            cantidadFormInput.value = cantidadInput.value;
+        }
     </script>
 
 @endsection

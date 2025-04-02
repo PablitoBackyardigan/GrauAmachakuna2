@@ -14,4 +14,10 @@ class Producto extends Model
         'image',
         'file_uri', // Agregar esta línea
     ];
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
 }
