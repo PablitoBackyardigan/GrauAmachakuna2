@@ -91,7 +91,7 @@
                 // Obtener la URL base dinámicamente
                 const baseUrl = window.location.origin; 
 
-                fetch(`${baseUrl}/ecommerce/public/productos/${productoId}/edit`)
+                fetch(`${baseUrl}/productos/${productoId}/edit`)
 
                     .then(response => {
                         if (!response.ok) {
