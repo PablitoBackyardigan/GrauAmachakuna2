@@ -88,16 +88,11 @@
                 // Obtener el ID del producto desde el atributo data-producto-id
                 const productoId = btnOpenModal.getAttribute("data-producto-id");
         
-<<<<<<< HEAD
-                // Solicitar el formulario de edición para ese producto
-                fetch(`public/productos/${productoId}/edit`)
-=======
                 // Obtener la URL base dinámicamente
                 const baseUrl = window.location.origin; 
 
-                fetch(`${baseUrl}/ecommerce/public/productos/${productoId}/edit`)
+                fetch(`${baseUrl}/productos/${productoId}/edit`)
 
->>>>>>> develop
                     .then(response => {
                         if (!response.ok) {
                             throw new Error(`Error: ${response.statusText}`);
