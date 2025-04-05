@@ -25,6 +25,14 @@ header {
     padding: 20px 0; /* Ajusta el espacio superior e inferior */
 }
 
+.admin-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 20px;
+}
+
 .contenido {
     display: flex;
     justify-content: center;

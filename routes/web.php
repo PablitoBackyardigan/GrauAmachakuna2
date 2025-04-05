@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::controller(ProductController::class)->group(function(){
         Route::post('productos', 'store')->name('productos.store');
-
+        Route::delete('/productos/{producto}', 'destroy')->name('productos.destroy');
         Route::get('productos/{producto}/edit', 'edit')->name('productos.edit');
         Route::put('productos/{producto}', 'update')->name('productos.update');
     });

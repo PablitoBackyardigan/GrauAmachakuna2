@@ -10,10 +10,15 @@
 
 @section('content')
 
-    <section class="filters">
+    <section class="admin-btns">
         <!-- Botón para abrir el modal -->
         @can('productos.edit')
             <button class="btn" id="openModal" data-producto-id="{{ $producto->id }}">Editar Producto</button>
+            <form action="{{ route('productos.destroy', $producto) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto?')">
+                @csrf
+                @method('DELETE') <!-- Método DELETE para eliminar -->
+                <button type="submit" class="btn btn-danger">Eliminar Producto</button>
+            </form>            
         @endcan
 
         <!-- Modal vacía donde cargaremos el formulario -->
