@@ -20,9 +20,47 @@ header {
     text-align: center;
 }
 
+a {
+    text-decoration: none;
+}
+
 .titulo h1 {
     margin: 0; /* Elimina cualquier margen predeterminado */
     padding: 20px 0; /* Ajusta el espacio superior e inferior */
+}
+
+.filters {
+    display: flex;
+    flex-direction: row; /* ← Este es el único cambio necesario aquí */
+    gap: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-box input {
+    min-width: 400px;
+    padding: 10px 15px;
+    border: 1px solid;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.filter-selects {
+    display: flex;
+    flex-direction: row; /* ← Cambia esto para que los select estén en fila */
+    gap: 15px;
+}
+
+.filter-selects select {
+    width: auto; /* ← Deja que se ajuste automáticamente al contenido */
+    min-width: 200px; /* ← O define un ancho mínimo cómodo */
+    padding: 10px 15px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
 }
 
 .products {

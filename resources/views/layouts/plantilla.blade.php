@@ -10,6 +10,10 @@
 <body>
     <header>
         <nav>
+            <a href="{{route('home')}}">
+                <img src="{{ asset('images/Logo.png') }}">
+            </a>
+
             <ul>
                 <li><a href="{{route('home')}}">Inicio</a></li>
                 <li><a href="{{route('productos.index')}}">Productos</a></li>
