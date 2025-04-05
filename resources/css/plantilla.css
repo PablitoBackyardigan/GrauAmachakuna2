@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Damion&display=swap');
+
+
+* {
+    box-sizing: border-box; /* Asegura que el padding no cause desbordamientos */
+}
+
 body {
     overflow-x: hidden; /* Evita el desplazamiento horizontal */
     background-color: #fff; 
@@ -10,12 +17,14 @@ body {
 }
 
 header {
-    font-size: 20px;
-    width: 100vw;
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-size: 25px;
+    width: 100vw; /* Asegura que el ancho sea 100% del viewport */
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Alinea el contenido arriba */
-    align-items: flex-end; /* Alinea el contenido a la derecha */
+    align-items: flex-start; /* Alinea todo el contenido a la izquierda */
     color: white;
     position: relative;
     padding-top: 20px; /* Espacio superior para que no esté pegado arriba */
@@ -41,19 +50,39 @@ header * {
     z-index: 2; /* Asegura que el texto y otros elementos queden sobre el filtro */
 }
 
-nav ul { 
+header img {
+    width: 70px;
+    height: auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* Esto separa el logo a la izquierda y el ul a la derecha */
+    align-items: center; /* Esto alinea verticalmente los elementos en el centro */
+    width: 100%; /* Asegura que el nav ocupe todo el ancho de la pantalla */
+    padding: 0 50px; /* Espaciado horizontal: 20px de margen a la izquierda y derecha */
+}
+
+nav img {
+    margin-left: 0; /* El logo no tendrá margen a la izquierda */
+}
+
+nav ul {
     list-style: none; 
-    margin-right: 30px;
+    margin: 0; /* Elimina márgenes adicionales */
+    padding: 0; /* Elimina padding extra si existe */
+    flex-grow: 1; /* Esto asegura que el ul ocupe el espacio restante sin desbordarse */
+    text-align: right; /* Alinea los elementos de la lista a la derecha */
 }
 
-nav ul li { 
-    display: inline; 
-    margin: 0 15px; 
+nav ul li {
+    display: inline;
+    margin: 0 15px; /* Mantiene espacio entre los elementos de la lista */
 }
 
-nav ul li a { 
-    color: white; 
-    text-decoration: none; 
+nav ul li a {
+    color: white;
+    text-decoration: none;
 }
 
 footer { 

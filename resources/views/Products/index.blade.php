@@ -2,7 +2,7 @@
 
 @section('title', 'Productos')
 
-@section('titulo', 'PRODUCTOS')
+@section('titulo', 'Productos')
 
 @push('styles')
     @vite(['resources/css/indexProduct.css', 'resources/css/createProduct.css'])
@@ -10,14 +10,11 @@
 
 @section('content')
 
-    <section class="filters">
-        <!-- Botón para abrir la modal -->
+    <section class="admin">
         @can('productos.create')
             <button class="btn" id="openModal">Crear Producto</button>
         @endcan
 
-        <!-- Modal vacía donde cargaremos el formulario -->
-        <!-- Modal -->
         <div id="modalCrearProducto" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -25,7 +22,33 @@
                     @include('Products.create') <!-- Carga la vista directamente -->
                 </div>
             </div>
-        </div>        
+        </div>
+    </section>
+
+    <section class="filters">
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar productos...">
+        </div>
+        
+        <div class="filter-selects">
+            <form method="GET" action="{{ route('productos.index') }}">
+                <select id="categoryFilter" name="category" onchange="this.form.submit()">
+                    <option value="">Todas las categorías</option>
+                    @foreach ($categorias as $categoria)
+                        <option value="{{ $categoria }}" {{ request('category') == $categoria ? 'selected' : '' }}>
+                            {{ $categoria }}
+                        </option>
+                    @endforeach
+                </select>
+            </form>
+            
+                          
+            <select id="sortFilter">
+                <option value="price-asc">Precio: Menor a Mayor</option>
+            </select>
+        </div>
+
     </section>
 
     <section class="products">
@@ -35,17 +58,20 @@
 
         <div class="grid-container">
             @foreach ($productos as $producto)
-                <div class="cardproduct">
 
-                    <div class="img">
-                        <img src="{{ asset($producto->file_uri) }}">
-                    </div>
-                
-                    <div class="text">
-                        <a class="h3" href="{{route('productos.show', $producto->id)}}">{{$producto->name}}</a>
-                        <p class="p"> S/. {{$producto->price}} </p>
-                    </div>
+                <div class="cardproduct">
+                    <a href="{{route('productos.show', $producto->id)}}">
+                        <div class="img">
+                            <img src="{{ asset($producto->file_uri) }}">
+                        </div>
+                    
+                        <div class="text">
+                            <h3 class="h3">{{$producto->name}}</h3>
+                            <p class="p"> S/. {{$producto->price}} </p>
+                        </div>
+                    </a>
                 </div>
+
             @endforeach
         </div>
 

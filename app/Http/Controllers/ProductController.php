@@ -7,12 +7,20 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(){
-
-        $productos = Producto::paginate();
-
-        return view('Products.index', compact('productos'));
-    }
+    public function index(Request $request)
+    {
+        $categorias = Producto::select('category')->distinct()->pluck('category');
+    
+        $query = Producto::query();
+    
+        if ($request->has('category') && $request->category != '') {
+            $query->where('category', $request->category);
+        }
+    
+        $productos = $query->paginate();
+    
+        return view('Products.index', compact('productos', 'categorias'));
+    }    
 
     public function create() {
         $productos = Producto::select('category')->distinct()->get();

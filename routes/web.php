@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::controller(ProductController::class)->group(function(){
         Route::post('productos', 'store')->name('productos.store');
-        Route::get('productos/{producto}', 'show')->name('productos.show');
+
         Route::get('productos/{producto}/edit', 'edit')->name('productos.edit');
         Route::put('productos/{producto}', 'update')->name('productos.update');
     });
@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
 // Rutas de productos
 Route::controller(ProductController::class)->group(function(){
+    Route::get('productos/{producto}', 'show')->name('productos.show');
     Route::get('productos', 'index')->name('productos.index');
 });
 
