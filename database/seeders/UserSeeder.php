@@ -25,6 +25,12 @@ class UserSeeder extends Seeder
             'password' => bcrypt('321'),
         ])->assignRole('Editor');
 
+        User::create([
+            'name' => 'Cliente',
+            'email' => 'Cliente@example.com',
+            'password' => bcrypt('cliente123'),
+        ]);
+
         User::factory(9)->create();
     }
 }

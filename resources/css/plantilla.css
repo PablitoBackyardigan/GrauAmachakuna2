@@ -85,6 +85,11 @@ nav ul li a {
     text-decoration: none;
 }
 
+.content {
+    flex: 1;
+}
+
+
 footer { 
     background: #f1396d; 
     color: white; 

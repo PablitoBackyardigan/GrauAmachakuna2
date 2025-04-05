@@ -33,6 +33,13 @@
                         <a href="{{route('login')}}">Login</a>
                     @endauth
                 </li>
+                <li>
+                    @auth
+
+                    @else
+                        <a href="{{route('register')}}">Register</a>
+                    @endauth
+                </li>   
                 
             </ul>
         </nav>
@@ -42,8 +49,9 @@
         </div>
     </header>
 
-    @yield('content')
-
+    <div class="content">
+        @yield('content')
+    </div>
 
     <footer>
         <p>&copy; 2025 Todos los derechos reservados.</p>
