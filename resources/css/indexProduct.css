@@ -20,6 +20,12 @@ header {
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .titulo {
+        font-size: 1.5rem;
+    }
+}
+
 a {
     text-decoration: none;
 }
@@ -39,6 +45,13 @@ a {
     align-items: center;
 }
 
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+    }
+}
+
+
 .search-box input {
     min-width: 400px;
     padding: 10px 15px;
@@ -51,6 +64,12 @@ a {
     display: flex;
     flex-direction: row; /* ← Cambia esto para que los select estén en fila */
     gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .filter-selects {
+        flex-direction: column;
+    }
 }
 
 .filter-selects select {
@@ -92,7 +111,13 @@ a {
     width: calc(50% - 10px); /* Hace que cada tarjeta ocupe el 50% del contenedor con espacio entre ellas */
     max-width: 400px;
 }
-  
+ 
+@media (max-width: 768px) {
+    .cardproduct {
+        min-width: 300px;
+    }
+}
+
 .img {
     width: 100%;
     height: 150px; /* Ajusta la altura según lo necesites */

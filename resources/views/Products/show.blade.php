@@ -10,6 +10,8 @@
 
 @section('content')
 
+    <a href="{{ Route('productos.index') }}">Volver a productos</a>
+
     <section class="admin-btns">
         <!-- Botón para abrir el modal -->
         @can('productos.edit')
@@ -29,11 +31,6 @@
             </div>
         </div>        
     </section>
-
-    <a href="{{ Route('productos.index') }}">Volver a productos</a>
-
-
-    
 
     <section class="contenido">
         <div class="producto-container">

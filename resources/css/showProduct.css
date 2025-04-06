@@ -20,6 +20,12 @@ header {
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .titulo {
+        font-size: 1.5rem;
+    }
+}
+
 .titulo h1 {
     margin: 0; /* Elimina cualquier margen predeterminado */
     padding: 20px 0; /* Ajusta el espacio superior e inferior */
@@ -46,6 +52,7 @@ header {
     max-width: 1200px;
 }
 
+
 /* Imágenes más pequeñas */
 .imagenes-producto {
     display: flex;
@@ -58,17 +65,17 @@ header {
     border-radius: 10px;
 }
 
-.imagenes-secundarias {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
+@media (max-width: 768px) {
+    .producto-container {
+        flex-direction: column;
+    }
+
+    .imagen-principal img {
+        width: 250px;
+        border-radius: 10px;
+    }
 }
 
-.imagenes-secundarias img {
-    width: 120px;
-    height: auto;
-    border-radius: 5px;
-}
 
 /* Descripción del producto */
 .descripcion-producto {
