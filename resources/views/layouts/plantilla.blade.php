@@ -13,8 +13,10 @@
             <a href="{{route('home')}}">
                 <img src="{{ asset('images/Logo.png') }}">
             </a>
-
-            <ul>
+        
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        
+            <ul id="navMenu">
                 <li><a href="{{route('home')}}">Inicio</a></li>
                 <li><a href="{{route('productos.index')}}">Productos</a></li>
                 <li><a href="{{ route('cart.index') }}">Carrito</a></li>
@@ -35,14 +37,13 @@
                 </li>
                 <li>
                     @auth
-
                     @else
                         <a href="{{route('register')}}">Register</a>
                     @endauth
                 </li>   
-                
             </ul>
         </nav>
+        
 
         <div class="titulo">
             <h1> @yield('titulo') </h1>
@@ -56,5 +57,14 @@
     <footer>
         <p>&copy; 2025 Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById("navMenu");
+            navMenu.classList.toggle("show");
+        }
+    </script>
+    
+    
 </body>
 </html>
