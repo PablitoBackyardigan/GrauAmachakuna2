@@ -52,9 +52,18 @@ header * {
     z-index: 2; /* Asegura que el texto y otros elementos queden sobre el filtro */
 }
 
-header img {
+.logo img {
+    margin-left: -30px;
     width: 70px;
     height: auto;
+}
+
+@media screen and (max-width: 768px) {
+    
+    .logo img {
+        width: 50px;
+    }
+
 }
 
 nav {
@@ -102,13 +111,15 @@ nav ul li a {
     /* Estilo del botón hamburguesa */
     .menu-toggle {
         display: block;
+        position: absolute;   /* Flotante dentro del header */
+        top: 20px;
+        right: 20px;
         font-size: 30px;
         background: none;
         border: none;
         color: white;
         cursor: pointer;
-        margin-left: auto;
-        z-index: 3;
+        z-index: 1000;
     }
 
     /* El menú inicialmente estará oculto fuera de la pantalla */

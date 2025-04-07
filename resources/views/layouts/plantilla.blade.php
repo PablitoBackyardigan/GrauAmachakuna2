@@ -9,12 +9,13 @@
 </head>
 <body>
     <header>
+        
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
         <nav>
-            <a href="{{route('home')}}">
+            <a href="{{route('home')}}" class="logo">
                 <img src="{{ asset('images/Logo.png') }}">
             </a>
-        
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         
             <ul id="navMenu">
                 <li><a href="{{route('home')}}">Inicio</a></li>
