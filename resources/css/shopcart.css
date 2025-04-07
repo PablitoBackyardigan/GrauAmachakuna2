@@ -9,7 +9,7 @@ header {
     height: 11rem;
 }
 
-button {
+.contenido button {
     color: white;
     font-size: 16px;
     font-weight: 600;
@@ -21,7 +21,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.contenido button:hover {
     background-color: #d33461;
 }
 

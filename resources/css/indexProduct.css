@@ -60,6 +60,12 @@ a {
     font-size: 1rem;
 }
 
+@media (max-width: 768px) {
+    .search-box input {
+        min-width: 350px;
+    }
+}
+
 .filter-selects {
     display: flex;
     flex-direction: row; /* ← Cambia esto para que los select estén en fila */
