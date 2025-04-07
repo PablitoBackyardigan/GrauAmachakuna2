@@ -197,7 +197,7 @@ header {
 @media (max-width: 768px) {
     .modal-content {
         width: 95%; /* Más ancho */
-        height: 85%;
+        height: 90%;
     }
 }
 
