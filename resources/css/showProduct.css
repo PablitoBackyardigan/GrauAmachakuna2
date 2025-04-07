@@ -194,6 +194,13 @@ header {
     height: 75%;
 }
 
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%; /* Más ancho */
+        height: 85%;
+    }
+}
+
 /* Botón de cerrar */
 .close {
     position: absolute;

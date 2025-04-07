@@ -151,7 +151,15 @@
     }
     
     .file-upload {
-      height: 200px;
+      height: 250px;
+    }
+
+    .file-upload svg {
+      height: 0px;
+    }
+
+    .file-upload p {
+      margin-top: -20px;
     }
   }
 
