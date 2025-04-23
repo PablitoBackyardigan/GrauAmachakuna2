@@ -12,9 +12,25 @@ class ProductController extends Controller
         $categorias = Producto::select('category')->distinct()->pluck('category');
     
         $query = Producto::query();
-    
+        
+        // Filtrado por Categoria
         if ($request->has('category') && $request->category != '') {
             $query->where('category', $request->category);
+        }
+
+        // Filtrado por nombre (LIKE)
+        if ($request->has('search') && $request->search != '') {
+            $searchTerm = $request->search;
+            $query->where('name', 'LIKE', "%{$searchTerm}%");
+        }
+
+        // Ordenamiento por precio
+        if ($request->has('sort') && $request->sort != '') {
+            if ($request->sort == 'price-asc') {
+                $query->orderBy('price', 'asc');
+            } elseif ($request->sort == 'price-desc') {
+                $query->orderBy('price', 'desc');
+            }
         }
     
         $productos = $query->paginate();
