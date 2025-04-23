@@ -68,14 +68,61 @@
             @endif
 
     </div>
+    
     <div class="columna">
         <h3 class="titulo-caja">Resumen de Compra</h3>
         <div class="caja2">
             <h1>Total</h1>
             <p><strong>S/.{{ $cartItems->sum(fn($item) => $item->producto->price * $item->cantidad) }}</strong></p>   
-            <button type="submit">Proceder al Pago</button>  
+            <button type="submit" id="btn_pagar">Proceder al Pago</button>  
         </div>
     </div>
+
+    <script src="https://checkout.culqi.com/js/v4"></script>
+    <script>
+        Culqi.publicKey = 'pk_test_tuLlavePublica'; // Reemplaza con tu llave real
+
+        const totalCarrito = {{ $cartItems->sum(fn($item) => $item->producto->price * $item->cantidad) }};
+        const amountEnCentavos = Math.round(totalCarrito * 100); // Culqi usa centavos
+
+        Culqi.settings({
+            title: 'Culqi Store',
+            currency: 'PEN',  // Este parámetro es requerido para realizar pagos yape
+            amount: amountEnCentavos,  // Este parámetro es requerido para realizar pagos yape
+            order: 'ord_live_0CjjdWhFpEAZlxlz', // Este parámetro es requerido para realizar pagos con pagoEfectivo, billeteras y Cuotéalo
+            xculqirsaid: 'Inserta aquí el id de tu llave pública RSA',
+            rsapublickey: 'Inserta aquí tu llave pública RSA',
+        });
+        
+        Culqi.options({
+            style: {
+                logo: "{{ asset('images/LogoBlack.png') }}",
+                bannerColor: '#f1396d', // hexadecimal
+                buttonBackground: '', // hexadecimal
+                menuColor: '', // hexadecimal
+                linksColor: '', // hexadecimal
+                buttonText: '', // texto que tomará el botón
+                buttonTextColor: '', // hexadecimal
+                priceColor: '' // hexadecimal
+            }
+        });
+
+        document.getElementById('btn_pagar').addEventListener('click', function (e) {
+            Culqi.open();
+            e.preventDefault();
+        });
+
+        // Función para recibir respuesta después del pago (opcional)
+        function culqi() {
+            if (Culqi.token) {
+                const token = Culqi.token.id;
+                console.log('Token generado: ' + token);
+            } else {
+                console.error(Culqi.error.user_message);
+            }
+        }
+    </script>
+    
 </section>  
 
 @endsection

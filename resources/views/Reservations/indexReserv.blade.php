@@ -28,9 +28,7 @@
     <section class="filters">
         
         <div class="search-box">
-            <form method="GET" action="{{ route('productos.index') }}">
-                <input type="text" name="search" placeholder="Buscar producto..." value="{{ request('search') }}">
-            </form>
+            <input type="text" id="searchInput" placeholder="Buscar productos...">
         </div>
         
         <div class="filter-selects">
@@ -43,15 +41,12 @@
                         </option>
                     @endforeach
                 </select>
-
+            </form>
             
                           
-                <select id="sortFilter" name="sort" onchange="this.form.submit()">
-                    <option value="">Ordenar por</option>
-                    <option value="price-asc" {{ request('sort') == 'price-asc' ? 'selected' : '' }}>Precio: Menor a Mayor</option>
-                    <option value="price-desc" {{ request('sort') == 'price-desc' ? 'selected' : '' }}>Precio: Mayor a Menor</option>
-                </select>
-            </form>
+            <select id="sortFilter">
+                <option value="price-asc">Precio: Menor a Mayor</option>
+            </select>
         </div>
 
     </section>
