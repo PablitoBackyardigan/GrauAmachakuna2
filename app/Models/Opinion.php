@@ -10,10 +10,10 @@ class Opinion extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['opiniontext', 'estrellas', 'user_id'];
+    protected $fillable = ['opiniontext', 'estrellas', 'usuario_id'];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'usuario_id');
     }
 }

@@ -54,7 +54,7 @@
     <button type="submit" class="btn submit-btn">Enviar Formulario</button>
 </form>
 
-<!-- Mover el script a esta parte justo antes de </body> -->
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const fileInput = document.querySelector(".fileInput");
