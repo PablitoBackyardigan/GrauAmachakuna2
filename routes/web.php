@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OpinionController;
 
 
 // Rutas de inicio
@@ -31,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
+    Route::controller(OpinionController::class)->group(function(){
+        Route::post('opiniones', 'store')->name('opiniones.store');
+    });
 });
 
 // Rutas de productos
