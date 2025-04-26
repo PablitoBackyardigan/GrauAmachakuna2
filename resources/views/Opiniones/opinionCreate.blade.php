@@ -1,32 +1,32 @@
 @push('styles')
-    @vite(['resources/css/createProduct.css'])
+    @vite(['resources/css/createOpinion.css'])
 @endpush
 
 <h2 class="form-title"> Agregar Reseña </h2>
 
-<form action="{{ route('productos.store') }}" method="POST" enctype="multipart/form-data" class="formCrearProducto">
+<form action="{{ route('opiniones.store') }}" method="POST" enctype="multipart/form-data" class="formCrearOpinion">
     @csrf
 
-    <div class="form-row">
-      <!-- Columna izquierda -->
-      <div class="form-column">
-        <div class="form-group">
-          <input type="text" name="name" class="form-control" placeholder="Nombre" autocomplete="off">
-        </div>
-        
-        <div class="form-group">
-          <textarea name="description" class="form-control" placeholder="Descripción" rows="5"></textarea>
-        </div>
-        
-        <div class="form-group">
-          <div class="input-container">
-            <span class="currency">S/</span>
-            <input type="number" name="price" class="form-control price-input" placeholder="Precio" autocomplete="off">
-          </div>
-        </div>
+    <div class="formCrearOpinion-Container">
+      <div class="form-group">
+        <textarea name="opiniontext" class="form-control" placeholder="Descripción" rows="5"></textarea>
       </div>
       
+      <div class="form-group">
+          <div class="rating">
+            <input type="radio" id="star5" name="estrellas" value="5" /><label for="star5" title="5 estrellas"></label>
+            <input type="radio" id="star4" name="estrellas" value="4" /><label for="star4" title="4 estrellas"></label>
+            <input type="radio" id="star3" name="estrellas" value="3" /><label for="star3" title="3 estrellas"></label>
+            <input type="radio" id="star2" name="estrellas" value="2" /><label for="star2" title="2 estrellas"></label>
+            <input type="radio" id="star1" name="estrellas" value="1" /><label for="star1" title="1 estrella"></label>
+          </div>
+      </div>
+      
+      <div class="form-group">
+        <button type="submit" class="btn submit-btn">Enviar Formulario</button>
+      </div>
+      
+
     </div>
-    
-    <button type="submit" class="btn submit-btn">Enviar Formulario</button>
+
 </form>

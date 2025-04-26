@@ -18,6 +18,7 @@ class OpinionController extends Controller
 
         $opinion->opiniontext = $request->opiniontext;
         $opinion->estrellas = $request->estrellas;
+        $opinion->usuario_id = auth()->id();
 
         $opinion->save();
 

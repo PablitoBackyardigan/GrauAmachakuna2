@@ -238,7 +238,7 @@ header {
 }
 
 .form-titulo {
-    margin-top: 30px;
+    margin-top: 100px;
     text-align: center; /* Centra el texto */
     font-size: 24px;
     color: #333;
@@ -343,8 +343,6 @@ header {
     }
   }
   
-
-
 .mapa {
     width: 100%;
     margin-top: 60px;
@@ -370,8 +368,6 @@ header {
     font-size: 20px;
     color: #333;
 }
-
-
 
 /* Estilos generales del modal */
 .modal {
@@ -411,7 +407,7 @@ header {
 @media (max-width: 768px) {
   .modal-content {
       width: 95%; /* Más ancho */
-      height: 90%;
+      height: 60%;
   }
 }
 
