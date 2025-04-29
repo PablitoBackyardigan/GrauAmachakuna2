@@ -12,9 +12,10 @@ class Producto extends Model
         'category',
         'price',
         'image',
-        'file_uri', // Agregar esta línea
+        'file_uri',
     ];
-
+    /* Esta función establece una relación de 
+    uno a muchos con el modelo CartItem.*/
     public function cartItems()
     {
         return $this->hasMany(CartItem::class);
