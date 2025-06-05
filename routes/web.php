@@ -30,8 +30,6 @@ Route::middleware('auth')->group(function () {
         Route::put('productos/{producto}', 'update')->name('productos.update');
     });
 
-
-
     Route::controller(OpinionController::class)->group(function(){
         Route::post('opiniones', 'store')->name('opiniones.store');
     });
@@ -42,7 +40,6 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{productoId}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-
 
 // Rutas de productos
 Route::controller(ProductController::class)->group(function(){
