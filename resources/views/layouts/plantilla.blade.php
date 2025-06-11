@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    @notifyCss
     @vite(['resources/css/plantilla.css'])
     <title>@yield('title')</title>
     @stack('styles')
@@ -22,6 +23,7 @@
                 <li><a href="{{route('home')}}">Inicio</a></li>
                 <li><a href="{{route('productos.index')}}">Productos</a></li>
                 <li><a href="{{ route('cart.index') }}">Carrito</a></li>
+                <li><a href="{{ route('pedidos.index') }}">Pedidos</a></li>
                 <li>
                     @auth
                         <form id="formLogOut" method="POST" action="{{ route('logout')}}" style="display: inline;">
@@ -67,6 +69,7 @@
         }
     </script>
     
-    
+    @include('notify::components.notify') {{-- Libreria para las notificaciones --}}
+    @notifyJs
 </body>
 </html>

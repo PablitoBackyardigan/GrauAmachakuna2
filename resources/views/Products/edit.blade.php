@@ -8,15 +8,15 @@
         <!-- Columna izquierda -->
         <div class="form-column">
             <div class="form-group">
-                <input type="text" name="name" class="form-control" value="{{$producto->name}}" placeholder="Nombre" autocomplete="off">
+                <input type="text" name="name" class="form-control" value="{{ old('name', $producto->name) }}" placeholder="Nombre" autocomplete="off" required minlength="3" maxlength="100">
             </div>
 
             <div class="form-group">
-                <textarea name="description" class="form-control" placeholder="Descripción" rows="5">{{$producto->description}}</textarea>
+                <textarea name="description" class="form-control" placeholder="Descripción" rows="5" required minlength="10" maxlength="1000">{{ old('description', $producto->description) }}</textarea>
             </div>
 
             <div class="form-group">
-                <input type="text" name="category" class="form-control" placeholder="Categoría" list="categoryList" autocomplete="off" value="{{ old('category', $producto->category) }}">
+                <input type="text" name="category" class="form-control" placeholder="Categoría" list="categoryList" autocomplete="off" value="{{ old('category', $producto->category) }}" required maxlength="50">
                 <datalist id="categoryList">
                     @foreach ($categorias as $categoria)
                         <option value="{{ $categoria }}"></option>
@@ -27,7 +27,7 @@
             <div class="form-group">
                 <div class="input-container">
                     <span class="currency">S/</span>
-                    <input type="number" name="price" class="form-control price-input" value="{{$producto->price}}" placeholder="Precio" autocomplete="off">
+                    <input type="number" name="price" class="form-control price-input" value="{{ old('price', $producto->price) }}" placeholder="Precio" autocomplete="off" required min="0.01" step="0.01">
                 </div>
             </div>
         </div>
@@ -41,7 +41,6 @@
                     <line x1="8" y1="12" x2="16" y2="12" stroke="#20c997" stroke-width="2"/>
                 </svg>
                 <p class="upload-text">Subir imagen</p>
-                <!-- Input y botón para seleccionar archivos -->
                 <input type="file" id="fileInput" class="fileInput" name="productImage" accept=".png, .jpg, .jpeg, .webp, .svg" style="display:none;">
                 <button type="button" class="btn btn-light btnSelectFile">
                     Seleccionar archivo .jpg, .jpeg, .png
@@ -53,7 +52,6 @@
 
     <button type="submit" class="btn submit-btn">Enviar Formulario</button>
 </form>
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

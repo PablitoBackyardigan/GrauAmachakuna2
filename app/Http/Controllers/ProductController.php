@@ -40,7 +40,6 @@ class ProductController extends Controller
 
     public function create() {
         $productos = Producto::select('category')->distinct()->get();
-        
         return view('Products.create', compact('productos'));
     }
     
@@ -67,7 +66,8 @@ class ProductController extends Controller
                 'file_uri' => "images/productsPhotos/" . $fileName,
             ]);
         }
-    
+        
+        notify()->success('Producto creado correctamente!');
         return redirect()->route('productos.show', $producto);
     }    
     
@@ -84,7 +84,7 @@ class ProductController extends Controller
     {
         // Si necesitas pasar categorías a la vista, asegúrate de obtenerlas
         $categorias = Producto::pluck('category')->unique();
-    
+
         return view('Products.edit', compact('producto', 'categorias'))->render();
     }
     
@@ -110,6 +110,7 @@ class ProductController extends Controller
             ]);
         }
 
+        notify()->success('Producto editado correctamente!');
         return redirect()->route('productos.show', $producto);
         
     }
@@ -119,6 +120,7 @@ class ProductController extends Controller
         // Eliminar el producto
         $producto->delete();
 
+        notify()->success('Producto eliminado correctamente!');
         // Redirigir a la lista de productos con un mensaje de éxito
         return redirect()->route('productos.index')->with('success', 'Producto eliminado correctamente.');
     }

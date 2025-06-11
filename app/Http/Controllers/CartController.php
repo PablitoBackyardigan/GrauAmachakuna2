@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CartItem;
 use App\Models\Producto;
+use App\Models\Pedido;
+use App\Models\PedidoItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -131,6 +133,65 @@ class CartController extends Controller
         }
 
         return redirect()->route('cart.index')->with('success', 'Producto eliminado del carrito');
+    }
+
+    public function checkout()
+    {
+        if (Auth::check()) {
+            $cartItems = Auth::user()->cartItems()->with('producto')->get();
+
+            if ($cartItems->isEmpty()) {
+                return redirect()->back()->with('error', 'El carrito está vacío');
+            }
+
+            // Calcular total
+            $total = $cartItems->sum(fn($item) => $item->producto->price * $item->cantidad);
+
+            // Crear pedido
+            $pedido = Pedido::create([
+                'user_id' => Auth::id(),
+                'total' => $total
+            ]);
+
+            // Crear pedido_items
+            foreach ($cartItems as $item) {
+                PedidoItem::create([
+                    'pedido_id' => $pedido->id,
+                    'producto_id' => $item->producto->id,
+                    'cantidad' => $item->cantidad,
+                    'precio_unitario' => $item->producto->price
+                ]);
+            }
+
+            // Vaciar el carrito
+            CartItem::where('user_id', Auth::id())->delete();
+
+        } else {
+            $cart = session()->get('cart', []);
+            if (empty($cart)) {
+                return redirect()->back()->with('error', 'El carrito está vacío');
+            }
+
+            $total = collect($cart)->sum(fn($item) => $item['price'] * $item['cantidad']);
+
+            $pedido = Pedido::create([
+                'user_id' => null, // Usuario invitado
+                'total' => $total
+            ]);
+
+            foreach ($cart as $productoId => $item) {
+                PedidoItem::create([
+                    'pedido_id' => $pedido->id,
+                    'producto_id' => $productoId,
+                    'cantidad' => $item['cantidad'],
+                    'precio_unitario' => $item['price']
+                ]);
+            }
+
+            session()->forget('cart');
+        }
+
+        return redirect()->route('pedidos.show', $pedido->id)->with('success', '¡Pedido realizado con éxito!');
     }
 
 }
