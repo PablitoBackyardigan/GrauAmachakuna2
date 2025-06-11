@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OpinionController;
+use App\Http\Controllers\PedidoController;
 
 
 // Rutas de inicio
@@ -33,6 +34,14 @@ Route::middleware('auth')->group(function () {
     Route::controller(OpinionController::class)->group(function(){
         Route::post('opiniones', 'store')->name('opiniones.store');
     });
+
+    // Paga del carrito
+    Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    // Vista de todos los pedidos
+    Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
+    // Vista con el pedido
+    Route::get('/pedidos/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
+
 });
 
 // ❗ Rutas públicas del carrito (funcionan sin loguearse)

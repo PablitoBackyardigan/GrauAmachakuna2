@@ -58,9 +58,6 @@
 
     <section class="products">
 
-        {{-- {{$productos->links()}} --}}
-
-
         <div class="grid-container">
             @foreach ($productos as $producto)
 

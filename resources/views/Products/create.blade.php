@@ -12,15 +12,15 @@
       <!-- Columna izquierda -->
       <div class="form-column">
         <div class="form-group">
-          <input type="text" name="name" class="form-control" placeholder="Nombre" autocomplete="off">
+          <input type="text" name="name" class="form-control" placeholder="Nombre" autocomplete="off" required minlength="3" maxlength="100">
         </div>
         
         <div class="form-group">
-          <textarea name="description" class="form-control" placeholder="Descripción" rows="5"></textarea>
+          <textarea name="description" class="form-control" placeholder="Descripción" rows="5" required minlength="10" maxlength="1000"></textarea>
         </div>
         
         <div class="form-group">
-            <input type="text" name="category" class="form-control" placeholder="Categoría" list="categoryList" autocomplete="off">
+            <input type="text" name="category" class="form-control" placeholder="Categoría" list="categoryList" autocomplete="off" required>
             <datalist id="categoryList">
                 @foreach ($productos->pluck('category')->unique() as $categoria)
                     <option value="{{ $categoria }}"></option>
@@ -31,7 +31,7 @@
         <div class="form-group">
           <div class="input-container">
             <span class="currency">S/</span>
-            <input type="number" name="price" class="form-control price-input" placeholder="Precio" autocomplete="off">
+            <input type="number" name="price" class="form-control price-input" placeholder="Precio" autocomplete="off" required min="0.01" step="0.01">
           </div>
         </div>
       </div>
@@ -45,19 +45,17 @@
             <line x1="8" y1="12" x2="16" y2="12" stroke="#20c997" stroke-width="2"/>
           </svg>
           <p class="upload-text">Subir imagen</p>
-            <!-- Input y botón para seleccionar archivos -->
-            <input type="file" id="fileInput" class="fileInput" name="productImage" accept=".png, .jpg, .jpeg, .webp, .svg" style="display:none;">
-            <button type="button" class="btn btn-light btnSelectFile">
-                Seleccionar archivo .jpg, .jpeg, .png
-            </button>
-            <div class="preview-container"></div>
+          <input type="file" id="fileInput" class="fileInput" name="productImage" accept=".png, .jpg, .jpeg, .webp, .svg" required style="display:none;">
+          <button type="button" class="btn btn-light btnSelectFile">
+              Seleccionar archivo .jpg, .jpeg, .png
+          </button>
+          <div class="preview-container"></div>
         </div>
       </div>
     </div>
     
     <button type="submit" class="btn submit-btn">Enviar Formulario</button>
 </form>
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

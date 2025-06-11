@@ -71,7 +71,7 @@
               <div class="swiper-button-prev"></div>
             </div>
           
-            <button class="btn" id="openModal">Agregar Reseña</button>
+            <button class="button-rojo" id="openModal">Agregar Reseña</button>
 
           </div>
           
@@ -95,7 +95,7 @@
                   <input type="tel" id="telefono" placeholder="Tu teléfono" required />
                 </div>
               </div>
-              <button type="submit">Enviar</button>
+                <button type="button" id="btnEnviar" class="button-rojo">Enviar</button>
             </form>
           </div>
 
@@ -160,6 +160,6 @@
           });
       });
 
-    </script>    
+    </script>   
     
 @endsection

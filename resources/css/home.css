@@ -48,14 +48,24 @@ header {
     line-height: 1.5;
 }
 
-.button {
-    display: inline-block;
-    padding: 10px 15px;
-    background: #333;
+.button-rojo {
+    background-color: #f1396d;
     color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+  
+.button-rojo:hover {
+  background-color: #d7335a;
 }
 
 .nosotros {
@@ -301,25 +311,6 @@ header {
     border-radius: 8px;
     font-size: 14px;
     box-sizing: border-box;
-  }
-  
-  button {
-    margin-top: 20px;
-    background-color: #f4436b;
-    color: #fff;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  button:hover {
-    background-color: #d7335a;
   }
   
   @media (max-width: 768px) {

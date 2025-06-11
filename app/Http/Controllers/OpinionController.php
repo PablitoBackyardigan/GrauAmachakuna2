@@ -14,14 +14,21 @@ class OpinionController extends Controller
 
     public function store(Request $request)
     {
-        $opinion = new Opinion();
+        // Validación de los campos
+        $validatedData = $request->validate([
+            'opiniontext' => 'required|string|min:10|max:1000',
+            'estrellas' => 'required|integer|min:1|max:5',
+        ]);
 
-        $opinion->opiniontext = $request->opiniontext;
-        $opinion->estrellas = $request->estrellas;
-        $opinion->usuario_id = auth()->id();
+        // Crear nueva opinión con los datos validados
+        $opinion = new Opinion();
+        $opinion->opiniontext = $validatedData['opiniontext'];
+        $opinion->estrellas = $validatedData['estrellas'];
+        $opinion->usuario_id = auth()->id(); // Asocia la opinión al usuario autenticado
 
         $opinion->save();
+        notify()->success('Opinión agregada correctamente!');
+        return redirect()->route('home')->with('success', 'Opinión enviada correctamente.');
+    }
 
-        return redirect()->route('home');
-    } 
 }

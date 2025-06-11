@@ -74,9 +74,28 @@
         <div class="caja2">
             <h1>Total</h1>
             <p><strong>S/.{{ $cartItems->sum(fn($item) => $item->producto->price * $item->cantidad) }}</strong></p>   
-            <button type="submit" id="btn_pagar">Proceder al Pago</button>  
+            <button type="submit" id="btn_pagar">Proceder al Pago</button>
+            
+            <form action="{{ route('checkout') }}" method="POST">
+                @csrf
+                    <button type="submit" id="btn_simularPago">Simular Pago</button>    
+            </form>
         </div>
     </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="modalConfirmacion" class="modal-overlay">
+        <div class="modal-content">
+            <div class="checkmark-circle">
+                <div class="background"></div>
+                <div class="checkmark draw"></div>
+            </div>
+            <h2>¡Pedido Realizado!</h2>
+            <p>Gracias por tu compra.</p>
+            <a href="{{ route('pedidos.index') }}" class="btn-modal">Ver mis pedidos</a>
+        </div>
+    </div>
+
 
     <script src="https://checkout.culqi.com/js/v4"></script>
     <script>
@@ -86,7 +105,7 @@
         const amountEnCentavos = Math.round(totalCarrito * 100); // Culqi usa centavos
 
         Culqi.settings({
-            title: 'Culqi Store',
+            title: 'Panadería "PAN COMIDO"',
             currency: 'PEN',  // Este parámetro es requerido para realizar pagos yape
             amount: amountEnCentavos,  // Este parámetro es requerido para realizar pagos yape
             order: 'ord_live_0CjjdWhFpEAZlxlz', // Este parámetro es requerido para realizar pagos con pagoEfectivo, billeteras y Cuotéalo
@@ -122,6 +141,22 @@
             }
         }
     </script>
+
+    {{-- Animación del modal de confirmación de pago --}}
+    <script>
+    document.getElementById('btn_simularPago').addEventListener('click', function(e) {
+        e.preventDefault(); // Evita que se envíe el formulario
+
+        // Mostrar modal
+        document.getElementById('modalConfirmacion').style.display = 'flex';
+
+        // Simular redirección después de unos segundos
+        setTimeout(() => {
+            document.querySelector('form[action="{{ route('checkout') }}"]').submit();
+        }, 5000); // 5 segundos antes de hacer checkout
+    });
+    </script>
+
     
 </section>  
 
