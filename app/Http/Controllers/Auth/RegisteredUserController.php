@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Zone;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $zones = Zone::all();
+        return view('auth.register', compact('zones'));
     }
 
     /**
@@ -31,20 +33,38 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'zone_id' => 'required|exists:zones,id',
         ]);
 
+        // ✅ Aquí se obtiene la zona seleccionada
+        $zone = Zone::findOrFail($request->zone_id);
+
+        // Validar si la zona está disponible
+        if (!$zone->available || $zone->vacancies <= 0) {
+            return back()->withErrors(['zone_id' => 'La zona seleccionada no está disponible o ya fue ocupada.']);
+        }
+
+        // ✅ Crear el usuario con la zona seleccionada
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'zone_id' => $zone->id, // 💡 aquí es donde estaba fallando
         ]);
 
-        event(new Registered($user));
+        // Reducir vacantes
+        $zone->vacancies -= 1;
+        if ($zone->vacancies <= 0) {
+            $zone->available = false;
+        }
+        $zone->save();
 
+        event(new Registered($user));
         Auth::login($user);
 
         return redirect(route('home', absolute: false));
     }
+
 }

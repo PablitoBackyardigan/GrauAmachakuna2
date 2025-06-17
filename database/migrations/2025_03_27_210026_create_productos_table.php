@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->text('category');
-            $table->decimal('price',10, 2);
+            $table->string('nameResponsable');
+            $table->foreignId('zone_id')->constrained('zones')->onDelete('cascade');
             $table->string('file_uri')->nullable();
             $table->timestamps();
         });

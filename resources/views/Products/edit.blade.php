@@ -13,23 +13,8 @@
 
             <div class="form-group">
                 <textarea name="description" class="form-control" placeholder="Descripción" rows="5" required minlength="10" maxlength="1000">{{ old('description', $producto->description) }}</textarea>
-            </div>
+            </div>      
 
-            <div class="form-group">
-                <input type="text" name="category" class="form-control" placeholder="Categoría" list="categoryList" autocomplete="off" value="{{ old('category', $producto->category) }}" required maxlength="50">
-                <datalist id="categoryList">
-                    @foreach ($categorias as $categoria)
-                        <option value="{{ $categoria }}"></option>
-                    @endforeach
-                </datalist>                     
-            </div>        
-
-            <div class="form-group">
-                <div class="input-container">
-                    <span class="currency">S/</span>
-                    <input type="number" name="price" class="form-control price-input" value="{{ old('price', $producto->price) }}" placeholder="Precio" autocomplete="off" required min="0.01" step="0.01">
-                </div>
-            </div>
         </div>
 
         <!-- Columna derecha -->

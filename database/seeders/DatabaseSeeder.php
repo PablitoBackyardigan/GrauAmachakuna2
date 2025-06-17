@@ -20,10 +20,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => 'carajo', 
         ]);
-
+        
+        $this->call(ZonesSeeder::class);
         $this->call(ProductoSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(OpinionSeeder::class);
+
     }
 }

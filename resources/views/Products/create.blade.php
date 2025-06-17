@@ -3,7 +3,7 @@
     @vite(['resources/css/createProduct.css'])
 @endpush
 
-<h2 class="form-title"> Crear Producto </h2>
+<h2 class="form-title"> Subir Avance </h2>
 
 <form action="{{ route('productos.store') }}" method="POST" enctype="multipart/form-data" class="formCrearProducto">
     @csrf
@@ -12,27 +12,15 @@
       <!-- Columna izquierda -->
       <div class="form-column">
         <div class="form-group">
-          <input type="text" name="name" class="form-control" placeholder="Nombre" autocomplete="off" required minlength="3" maxlength="100">
+          <input type="text" name="name" class="form-control" placeholder="Título del avance" autocomplete="off" required minlength="3" maxlength="100">
         </div>
         
         <div class="form-group">
-          <textarea name="description" class="form-control" placeholder="Descripción" rows="5" required minlength="10" maxlength="1000"></textarea>
+          <textarea name="description" class="form-control" placeholder="Descripción del avance" rows="5" required minlength="10" maxlength="1000"></textarea>
         </div>
-        
+      
         <div class="form-group">
-            <input type="text" name="category" class="form-control" placeholder="Categoría" list="categoryList" autocomplete="off" required>
-            <datalist id="categoryList">
-                @foreach ($productos->pluck('category')->unique() as $categoria)
-                    <option value="{{ $categoria }}"></option>
-                @endforeach
-            </datalist>                     
-        </div>
-        
-        <div class="form-group">
-          <div class="input-container">
-            <span class="currency">S/</span>
-            <input type="number" name="price" class="form-control price-input" placeholder="Precio" autocomplete="off" required min="0.01" step="0.01">
-          </div>
+          <input type="text" name="nameResponsable" class="form-control" placeholder="Nombre del Responsable" autocomplete="off" required minlength="3" maxlength="100">
         </div>
       </div>
       

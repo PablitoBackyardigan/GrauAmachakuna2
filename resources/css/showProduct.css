@@ -1,7 +1,5 @@
 header {
-    background-image: url("../../public/images/productosbackground.jpg");
-    background-size: cover;
-    background-position: center;
+    background-color: #056839;
     height: 13rem;
 }
 

@@ -15,15 +15,16 @@
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
         <nav>
-            <a href="{{route('home')}}" class="logo">
+{{--             <a href="{{route('home')}}" class="logo">
                 <img src="{{ asset('images/Logo.png') }}">
-            </a>
+            </a> --}}
         
             <ul id="navMenu">
                 <li><a href="{{route('home')}}">Inicio</a></li>
-                <li><a href="{{route('productos.index')}}">Productos</a></li>
-                <li><a href="{{ route('cart.index') }}">Carrito</a></li>
-                <li><a href="{{ route('pedidos.index') }}">Pedidos</a></li>
+                @auth
+                <li><a href="{{route('productos.index')}}">Avances</a></li>
+                @endauth
+                <li><a href="{{ route('ganadores.index') }}">Ganadores</a></li>
                 <li>
                     @auth
                         <form id="formLogOut" method="POST" action="{{ route('logout')}}" style="display: inline;">

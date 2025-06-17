@@ -15,59 +15,59 @@ class ProductoSeeder extends Seeder
     {
         $producto = new Producto();
 
-        $producto->name = "Torta de Chocolate";
-        $producto->description = "Deliciosa torta bañada en chocolate negro";
-        $producto->category = "Tortas";
-        $producto->price = 23;
-        $producto->file_uri = "images/torta_chocolate.jpg";
+        $producto->name = "Avance 1";
+        $producto->description = "Descripción del avance 1";
+        $producto->nameResponsable = "Responsable 1";
+        $producto->zone_id = 1;
+        $producto->file_uri = "images/Avance1.webp";
         $producto->save();
 
         $producto2 = new Producto();
 
-        $producto2->name = "Torta de 3 leches";
-        $producto2->description = "Deliciosa torta bañada en 3 leches";
-        $producto2->category = "Tortas";
-        $producto2->price = 20;
-        $producto2->file_uri = "images/torta_3leches.jpg";
+        $producto2->name = "Avance 2";
+        $producto2->description = "Descripción del avance 2";
+        $producto2->nameResponsable = "Responsable 2";
+        $producto2->zone_id = 1;
+        $producto2->file_uri = "images/Avance2.webp";
 
         $producto2->save();
 
         $producto3 = new Producto();
 
-        $producto3->name = "Tarta de Fresa";
-        $producto3->description = "Deliciosa torta rellena de fresas";
-        $producto3->category = "Tartas";
-        $producto3->price = 18;
-        $producto3->file_uri = "images/tarta_fresa.jpg";
+        $producto3->name = "Avance 3";
+        $producto3->description = "Descripción del avance 3";
+        $producto3->nameResponsable = "Responsable 3";
+        $producto3->zone_id = 1;
+        $producto3->file_uri = "images/Avance3.webp";
 
         $producto3->save();
 
         $producto4 = new Producto();
 
-        $producto4->name = "Cupcake";
-        $producto4->description = "Deliciosos cupcakes de distintos sabores";
-        $producto4->category = "Cupcakes";
-        $producto4->price = 5;
-        $producto4->file_uri = "images/cupcakes.jpg";
+        $producto4->name = "Avance 4";
+        $producto4->description = "Descripción del avance 4";
+        $producto4->nameResponsable = "Responsable 4";
+        $producto4->zone_id = 1;
+        $producto4->file_uri = "images/Avance4.webp";
 
         $producto4->save();
 
         $producto5 = new Producto();
 
-        $producto5->name = "Cheesecake de Maracuya";
-        $producto5->description = "Suave cheesecake de maracuya";
-        $producto5->category = "Cheesecake";
-        $producto5->price = 21;
-        $producto5->file_uri = "images/cheesecake_maracuya.webp";
+        $producto5->name = "Avance 5";
+        $producto5->description = "Descripción del avance 5";
+        $producto5->nameResponsable = "Responsable 5";
+        $producto5->zone_id = 1;
+        $producto5->file_uri = "images/Avance5.webp";
 
         $producto5->save();
 
         $producto6 = new Producto();
-        $producto6->name = "Cheesecake de Fresa";
-        $producto6->description = "Suave cheesecake de fresa";
-        $producto6->category = "Cheesecake";
-        $producto6->price = 21;
-        $producto6->file_uri = "images/cheesecake_fresa.webp";
+        $producto6->name = "Avance 6";
+        $producto6->description = "Descripción del avance 6";
+        $producto6->nameResponsable = "Responsable 6";
+        $producto6->zone_id = 1;
+        $producto6->file_uri = "images/Avance6.webp";
 
         $producto6->save();
         
