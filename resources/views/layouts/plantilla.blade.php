@@ -15,9 +15,9 @@
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
         <nav>
-{{--             <a href="{{route('home')}}" class="logo">
+            <a href="{{route('home')}}" class="logo">
                 <img src="{{ asset('images/Logo.png') }}">
-            </a> --}}
+            </a>
         
             <ul id="navMenu">
                 <li><a href="{{route('home')}}">Inicio</a></li>

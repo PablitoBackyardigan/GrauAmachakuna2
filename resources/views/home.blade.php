@@ -14,7 +14,7 @@
         <div class="hero-content">
             <h1>Grau Amachakuna</h1>
             <p>Únete a nuestra comunidad y adopta un espacio del Parque Grau. Juntos mantendremos nuestro parque limpio, hermoso y lleno de vida.</p>
-            <a href="#registro" class="cta-button">¡Adopta tu Espacio Ahora!</a>
+            <a href="{{route('register')}}" class="cta-button">¡Adopta tu Espacio Ahora!</a>
         </div>
     </section>
 
