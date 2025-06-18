@@ -29,32 +29,12 @@ Route::middleware('auth')->group(function () {
         Route::put('productos/{producto}', 'update')->name('productos.update');
     });
 
-<<<<<<< HEAD
-    Route::controller(OpinionController::class)->group(function(){
-        Route::post('opiniones', 'store')->name('opiniones.store');
-    });
-
-    // Paga del carrito
-    Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
-    // Vista de todos los pedidos
-=======
-
->>>>>>> develop
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
     // Vista con el pedido
     Route::get('/pedidos/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
 
 });
 
-<<<<<<< HEAD
-// ❗ Rutas públicas del carrito (funcionan sin loguearse)
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add/{productoId}', [CartController::class, 'addToCart'])->name('cart.add');
-Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-
-=======
->>>>>>> develop
 // Rutas de productos
 Route::controller(ProductController::class)->group(function(){
     Route::get('productos/{producto}', 'show')->name('productos.show');
