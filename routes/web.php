@@ -2,12 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\PedidoController;
-
+use App\Http\Controllers\GanadoresController;
 
 // Rutas de inicio
 Route::get('/', [HomeController::class, 'inicio']);
@@ -31,6 +29,7 @@ Route::middleware('auth')->group(function () {
         Route::put('productos/{producto}', 'update')->name('productos.update');
     });
 
+<<<<<<< HEAD
     Route::controller(OpinionController::class)->group(function(){
         Route::post('opiniones', 'store')->name('opiniones.store');
     });
@@ -38,23 +37,37 @@ Route::middleware('auth')->group(function () {
     // Paga del carrito
     Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
     // Vista de todos los pedidos
+=======
+
+>>>>>>> develop
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
     // Vista con el pedido
     Route::get('/pedidos/{pedido}', [PedidoController::class, 'show'])->name('pedidos.show');
 
 });
 
+<<<<<<< HEAD
 // ❗ Rutas públicas del carrito (funcionan sin loguearse)
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{productoId}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
+=======
+>>>>>>> develop
 // Rutas de productos
 Route::controller(ProductController::class)->group(function(){
     Route::get('productos/{producto}', 'show')->name('productos.show');
     Route::get('productos', 'index')->name('productos.index');
 });
+
+Route::get('/productos/zonas/{id}', [ProductController::class, 'zona'])->name('productos.zona');
+
+Route::post('/zones/{zone}/score', [\App\Http\Controllers\ZoneScoreController::class, 'store'])
+    ->middleware(['auth', 'role:Admin'])
+    ->name('zones.score');
+
+Route::get('/ganadores', [GanadoresController::class, 'index'])->name('ganadores.index');
 
 // Incluir autenticación de Breeze
 require __DIR__.'/auth.php';

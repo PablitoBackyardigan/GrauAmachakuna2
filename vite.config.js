@@ -14,6 +14,10 @@ const jsFiles = [
 ];
 
 export default defineConfig({
+    server: {
+        host: 'localhost',
+        port: 5173, // o cualquier puerto que quieras
+    },
     plugins: [
         laravel({
             input: [...cssFiles, ...jsFiles], // Combinar CSS y JS

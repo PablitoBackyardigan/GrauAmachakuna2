@@ -1,8 +1,9 @@
 @extends('layouts.plantilla')
 
-@section('title', 'Productos')
+@section('title', 'Avances - ' . $zone->name)
 
-@section('titulo', 'Productos')
+@section('titulo', 'Avances - ' . $zone->name)
+
 
 @push('styles')
     @vite(['resources/css/indexProduct.css', 'resources/css/createProduct.css'])
@@ -10,51 +11,16 @@
 
 @section('content')
 
-    <section class="admin">
-        @can('productos.create')
-            <button class="btn" id="openModal">Crear Producto</button>
-        @endcan
+    <button class="btn" id="openModal">Subir Avance</button>
 
-        <div id="modalCrearProducto" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div id="modalBody">
-                    @include('Products.create') <!-- Carga la vista directamente -->
-                </div>
+    <div id="modalCrearProducto" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody">
+                @include('Products.create') <!-- Carga la vista directamente -->
             </div>
         </div>
-    </section>
-
-    <section class="filters">
-        
-        <div class="search-box">
-            <form method="GET" action="{{ route('productos.index') }}">
-                <input type="text" name="search" placeholder="Buscar producto..." value="{{ request('search') }}">
-            </form>
-        </div>
-        
-        <div class="filter-selects">
-            <form method="GET" action="{{ route('productos.index') }}">
-                <select id="categoryFilter" name="category" onchange="this.form.submit()">
-                    <option value="">Todas las categorías</option>
-                    @foreach ($categorias as $categoria)
-                        <option value="{{ $categoria }}" {{ request('category') == $categoria ? 'selected' : '' }}>
-                            {{ $categoria }}
-                        </option>
-                    @endforeach
-                </select>
-
-            
-                          
-                <select id="sortFilter" name="sort" onchange="this.form.submit()">
-                    <option value="">Ordenar por</option>
-                    <option value="price-asc" {{ request('sort') == 'price-asc' ? 'selected' : '' }}>Precio: Menor a Mayor</option>
-                    <option value="price-desc" {{ request('sort') == 'price-desc' ? 'selected' : '' }}>Precio: Mayor a Menor</option>
-                </select>
-            </form>
-        </div>
-
-    </section>
+    </div>
 
     <section class="products">
 
@@ -69,7 +35,7 @@
                     
                         <div class="text">
                             <h3 class="h3">{{$producto->name}}</h3>
-                            <p class="p"> S/. {{$producto->price}} </p>
+                            <p class="p"> {{$producto->nameResponsable}} </p>
                         </div>
                     </a>
                 </div>
@@ -78,6 +44,19 @@
         </div>
 
     </section>
+
+    <section class="formulario-puntaje">   
+        @role('Admin')
+        <form action="{{ route('zones.score', $zone->id) }}" method="POST">
+            @csrf
+            <label for="score" class="score-form__label">Califica esta zona:</label>
+            <input type="number" name="score" id="score" min="1" max="10" required
+                value="{{ optional($zone->scores->where('user_id', auth()->id())->first())->score }}" class="score-form__input">
+            <button type="submit" class="score-form__button">Guardar puntaje</button>
+        </form>
+        @endrole
+    </section>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

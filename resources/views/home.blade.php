@@ -2,164 +2,95 @@
 
 @section('title', 'Home')
 
-@section('titulo', 'Pastelería')
+
 @push('styles')
     @vite(['resources/css/home.css'])
 @endpush
 
 
 @section('content')
-    {{-- Script para carrusel --}}
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    {{-- Cargar Ventana Agregar Reseña --}}
-    <div id="modalCrearReseña" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modalBody">
-                @include('Opiniones.opinionCreate') <!-- Carga la vista directamente -->
-            </div>
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Grau Amachakuna</h1>
+            <p>Únete a nuestra comunidad y adopta un espacio del Parque Grau. Juntos mantendremos nuestro parque limpio, hermoso y lleno de vida.</p>
+            <a href="#registro" class="cta-button">¡Adopta tu Espacio Ahora!</a>
         </div>
-    </div>
-
-    <section class="contenido">
-
-        <div class="nosotros">
-            <div class="overlayNosotros">
-                <div class="contentNosotros">
-                    <h1>SOBRE NOSOTROS</h1>
-                    <p>
-                      En Pan Comido convertimos la pastelería en arte, combinando tradición, creatividad y los mejores ingredientes. Cada postre es elaborado con técnicas artesanales y atención al detalle, ofreciendo tortas elegantes, macarons, tartaletas y pasteles personalizados que hacen de cada momento algo memorable.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-
-          <!-- Sección de Opiniones -->
-          <div class="contenido-opiniones">
-            <h1 class="titulo-opiniones">Opiniones</h1>
-          
-            <!-- Contenedor del Swiper -->
-            <div class="swiper">
-              <!-- Contenedor de las slides -->
-              <div class="swiper-wrapper">
-                @foreach ($opiniones as $opinion)
-                  <div class="swiper-slide">
-                    <div class="task">
-                      <div class="encabezado">
-                        <div class="usuario">
-                          <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="usuario"/>
-                          <span>{{ $opinion->user->name ?? 'Usuario anónimo' }}</span>
-                        </div>
-                        <div class="fecha">{{ $opinion->created_at ? $opinion->created_at->format('d M Y') : 'Fecha no disponible' }}</div>
-                      </div>
-                      <div class="estrellas">
-                        @for ($i = 0; $i < $opinion->estrellas; $i++)
-                          ★
-                        @endfor
-                      </div>
-                      <p>{{ $opinion->opiniontext }}</p>
-                    </div>
-                  </div>
-                @endforeach
-              </div>
-          
-              <!-- Botones de navegación -->
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-            </div>
-          
-            <button class="button-rojo" id="openModal">Agregar Reseña</button>
-
-          </div>
-          
-
-            <!-- Formulario para enviar mensaje -->
-            <h2 class="form-titulo">Enviar mensaje</h2>
-            <form class="formulario">
-              <div class="form-container">
-                <div class="mensaje">
-                  <label for="mensaje">Mensaje</label>
-                  <textarea id="mensaje" placeholder="Escribe tu mensaje..." required></textarea>
-                </div>
-                <div class="datos">
-                  <label for="nombre">Tu nombre</label>
-                  <input type="text" id="nombre" placeholder="Tu nombre" required />
-                  
-                  <label for="correo">Tu correo</label>
-                  <input type="email" id="correo" placeholder="Tu correo" required />
-                  
-                  <label for="telefono">Tu teléfono</label>
-                  <input type="tel" id="telefono" placeholder="Tu teléfono" required />
-                </div>
-              </div>
-                <button type="button" id="btnEnviar" class="button-rojo">Enviar</button>
-            </form>
-          </div>
-
-          <!-- Sección de Mapa -->
-          <div class="mapa">
-            <h2>Ubicación</h2>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0933024023593!2d-122.42177868468116!3d37.77492977975924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085815046dd0d87%3A0xd54152f05b99e853!2sPanadería%20Ejemplo!5e0!3m2!1ses-419!2scl!4v1618302733962!5m2!1ses-419!2scl"
-              width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
-            </iframe>
-          </div>
-
-          </div>
-
-
     </section>
 
-    <script>
-      const swiper = new Swiper('.swiper', {
-        slidesPerView: 3, // Mostrar 3 opiniones a la vez
-        spaceBetween: 30, // Espacio entre ellas
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        loop: true, // Hace que el carrusel sea infinito
-        breakpoints: {
-          0: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 }
-        }
-      });
-    </script>
+    <section id="como-funciona" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">¿Cómo Funciona?</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Regístrate</h3>
+                    <p>Completa el formulario de registro con tus datos personales y elige el área del parque que deseas adoptar.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Adopta tu Espacio</h3>
+                    <p>Selecciona una zona específica del Parque Grau y comprométete a mantenerla limpia y decorada durante el período acordado.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Participa y Compite</h3>
+                    <p>Mantén tu área en perfectas condiciones y participa en nuestras competencias mensuales para ganar increíbles premios.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          const modal = document.getElementById("modalCrearReseña");
-          const closeModal = document.querySelector(".close");
-          const btnOpenModal = document.getElementById("openModal");
-
-          // Asegurar que el modal esté oculto al cargar la página
-          modal.classList.remove("show");
-
-          if (!btnOpenModal) return;
-
-          btnOpenModal.addEventListener("click", function (event) {
-              event.preventDefault();
-              sessionStorage.setItem("modalAbierto", "true");
-              modal.classList.add("show"); // Mostrar el modal directamente
-          });
-
-          closeModal.addEventListener("click", function () {
-              modal.classList.remove("show"); // Oculta el modal
-              sessionStorage.removeItem("modalAbierto");
-          });
-
-          window.addEventListener("click", function (event) {
-              if (event.target === modal) {
-                  modal.classList.remove("show");
-                  sessionStorage.removeItem("modalAbierto");
-              }
-          });
-      });
-
-    </script>   
+    <section id="competencia" class="competition">
+        <div class="container">
+            <h2 class="section-title">Competencias y Premios</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666;">
+                Cada mes premiamos a los grupos que mejor mantengan sus áreas adoptadas
+            </p>
+            <div class="competition-grid">
+                <div class="prize-card">
+                    <div class="prize-icon">🥇</div>
+                    <h3>Primer Lugar</h3>
+                    <p><strong>S/. 500</strong> en efectivo + Certificado de reconocimiento + Cobertura en medios locales</p>
+                </div>
+                <div class="prize-card">
+                    <div class="prize-icon">🥈</div>
+                    <h3>Segundo Lugar</h3>
+                    <p><strong>S/. 300</strong> en efectivo + Kit de jardinería + Certificado de participación</p>
+                </div>
+                <div class="prize-card">
+                    <div class="prize-icon">🥉</div>
+                    <h3>Tercer Lugar</h3>
+                    <p><strong>S/. 200</strong> en efectivo + Plantas ornamentales + Certificado de participación</p>
+                </div>
+                <div class="prize-card">
+                    <div class="prize-icon">🌟</div>
+                    <h3>Mención Especial</h3>
+                    <p>Reconocimiento público + Kit de limpieza + Invitación a evento especial</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <h3 style="color: #2d5016; margin-bottom: 1rem;">Criterios de Evaluación</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; max-width: 800px; margin: 0 auto;">
+                    <div style="background: #f0f8f0; padding: 1rem; border-radius: 10px;">
+                        <strong>Limpieza</strong><br>
+                        <small>Estado general del área</small>
+                    </div>
+                    <div style="background: #f0f8f0; padding: 1rem; border-radius: 10px;">
+                        <strong>Decoración</strong><br>
+                        <small>Creatividad y belleza</small>
+                    </div>
+                    <div style="background: #f0f8f0; padding: 1rem; border-radius: 10px;">
+                        <strong>Mantenimiento</strong><br>
+                        <small>Constancia en el cuidado</small>
+                    </div>
+                    <div style="background: #f0f8f0; padding: 1rem; border-radius: 10px;">
+                        <strong>Innovación</strong><br>
+                        <small>Ideas originales</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
 @endsection

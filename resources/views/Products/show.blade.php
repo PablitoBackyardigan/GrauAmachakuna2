@@ -2,7 +2,7 @@
 
 @section('title', $producto->name)
 
-@section('titulo', 'PRODUCTOS')
+@section('titulo', $producto->name)
 
 @push('styles')
     @vite(['resources/css/showProduct.css', 'resources/css/createProduct.css'])
@@ -10,18 +10,18 @@
 
 @section('content')
 
-    <a href="{{ Route('productos.index') }}">Volver a productos</a>
+    <a href="{{ Route('productos.index') }}">Volver a los avances</a>
 
     <section class="admin-btns">
         <!-- Botón para abrir el modal -->
-        @can('productos.edit')
-            <button class="btn" id="openModal" data-producto-id="{{ $producto->id }}">Editar Producto</button>
+
+            <button class="btn" id="openModal" data-producto-id="{{ $producto->id }}">Editar Avance</button>
             <form action="{{ route('productos.destroy', $producto) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto?')">
                 @csrf
                 @method('DELETE') <!-- Método DELETE para eliminar -->
-                <button type="submit" class="btn btn-danger">Eliminar Producto</button>
+                <button type="submit" class="btn btn-danger">Eliminar Avance</button>
             </form>            
-        @endcan
+
 
         <!-- Modal vacía donde cargaremos el formulario -->
         <div id="modalCrearProducto" class="modal">
@@ -44,26 +44,8 @@
             <!-- Descripción del producto -->
             <div class="descripcion-producto">
                 <h1 class="titulo-producto">{{ $producto->name }}</h1>
-                <p class="marca">Marca: Dulces Delicias</p>
-                <p class="precio">S/{{ $producto->price }}</p>
                 <p>{{ $producto->description }}</p>
-    
-                <!-- Selector de cantidad -->
-                <div class="cantidad-container">
-                    <button type="button" onclick="decreaseQuantity()">-</button>
-                    <input type="number" id="cantidad" name="cantidad" value="1" min="1" onchange="updateQuantity()" />
-                    <button type="button" onclick="increaseQuantity()">+</button>
-                </div>
-                
-                <div class="AddCartButton">
-                    <!-- Botón Agregar al Carrito -->
-                    <form action="{{ route('cart.add', $producto->id) }}" method="POST" id="cartForm">
-                        @csrf
-                        <!-- Campo oculto para enviar la cantidad -->
-                        <input type="hidden" id="cantidad_form" name="cantidad" value="1">
-                        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
-                    </form>
-                </div>
+                <p><strong>Responsable:</strong> {{ $producto->nameResponsable }}</p>
 
             </div>
         </div>
@@ -164,37 +146,4 @@
         });
         
     </script>
-
-    <script>
-        // Función para disminuir la cantidad
-        function decreaseQuantity() {
-            var cantidadInput = document.getElementById('cantidad');
-            var cantidad = parseInt(cantidadInput.value);
-            if (cantidad > 1) {
-                cantidadInput.value = cantidad - 1;
-                updateHiddenInput();
-            }
-        }
-
-        // Función para aumentar la cantidad
-        function increaseQuantity() {
-            var cantidadInput = document.getElementById('cantidad');
-            var cantidad = parseInt(cantidadInput.value);
-            cantidadInput.value = cantidad + 1;
-            updateHiddenInput();
-        }
-
-        // Función para actualizar la cantidad
-        function updateQuantity() {
-            updateHiddenInput();
-        }
-
-        // Función para actualizar el input oculto en el formulario
-        function updateHiddenInput() {
-            var cantidadInput = document.getElementById('cantidad');
-            var cantidadFormInput = document.getElementById('cantidad_form');
-            cantidadFormInput.value = cantidadInput.value;
-        }
-    </script>
-
 @endsection
